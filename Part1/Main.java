@@ -4,11 +4,11 @@ import java.util.Optional;
 
 public class Main{
     public static void main(String[] args) {
-        Training t1 = new Training("Hans", 45, true);
-        Training t2 = new Training("Peter", 60, false);
-        Training t3 = new Training("Franz", 30, true);
+        Training t1 = new Training("Sparring", 45, true);
+        Training t2 = new Training("Padwork", 60, false);
+        Training t3 = new Training("Sparring", 30, true);
         try{
-            Training t4 = new Training("Karl", -10, false);
+            Training t4 = new Training("Condition", -10, false);
             System.out.println(t4.getName());
         } catch (IllegalArgumentException iae){
             System.out.println("Ein Training darf nur eine positive Anzahl an Minuten haben!");
@@ -26,7 +26,7 @@ public class Main{
         trainingsLogger.hinzufuegen(t3);
 
         for(Training training : trainingsLogger.nurSparring()){
-            System.out.println(training.print());
+            System.out.println(training);
         }
 
         System.out.println(trainingsLogger.nurSparring());
@@ -35,9 +35,8 @@ public class Main{
 
         Optional<Training> optionalTraining1 = trainingsLogger.findeNachName("Hans");
         Optional<Training> optionalTraining2 = trainingsLogger.findeNachName("Alessandro");
-        System.out.println(optionalTraining1);
-        System.out.println(optionalTraining2);
-
+        optionalTraining1.ifPresent(t -> System.out.println(t));
+        System.out.println(optionalTraining2.map(Training::toString).orElse("Name nicht gefunden"));
     }
 
 }

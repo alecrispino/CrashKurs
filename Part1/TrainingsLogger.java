@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.ArrayList;
 
 public class TrainingsLogger {
-    List<Training> trainings = new ArrayList<Training>();
+    private List<Training> trainings = new ArrayList<>();
         
     public void hinzufuegen(Training t){
         trainings.add(t);

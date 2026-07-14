@@ -2,33 +2,31 @@ package Part1;
 
 public class Training {
     private String name;
-    private Integer dauerInMinuten;
-    private Boolean istSparring;
+    private int dauerInMinuten;
+    private boolean istSparring;
 
     public String getName(){
         return this.name;
     }
 
-    public Integer getDauerInMinuten(){
+    public int getDauerInMinuten(){
         return this.dauerInMinuten;
     }
 
-    public Boolean istSparring(){
+    public boolean istSparring(){
         return this.istSparring;
     }
 
-    Training(String name, Integer dauerInMinuten, Boolean istSparring){
+    Training(String name, int dauerInMinuten, boolean istSparring){
         this.name = name;
         this.istSparring = istSparring;
 
-        if (dauerInMinuten >= 0) {
-            this.dauerInMinuten = dauerInMinuten;
-        }else{
+        if (dauerInMinuten <= 0) {
             throw new IllegalArgumentException("Dauer muss eine positive Zahl sein");
         }
     }
 
-    public String print(){
+    public String toString(){
         return "Name: " + this.name + " Dauer: " + this.dauerInMinuten + " ist Sparring: " + this.istSparring;
     }
 }
