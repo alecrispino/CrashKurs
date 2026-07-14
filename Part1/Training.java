@@ -18,14 +18,16 @@ public class Training {
     }
 
     Training(String name, int dauerInMinuten, boolean istSparring){
-        this.name = name;
-        this.istSparring = istSparring;
-
         if (dauerInMinuten <= 0) {
             throw new IllegalArgumentException("Dauer muss eine positive Zahl sein");
         }
+        
+        this.name = name;
+        this.dauerInMinuten = dauerInMinuten;
+        this.istSparring = istSparring;
     }
 
+    @Override
     public String toString(){
         return "Name: " + this.name + " Dauer: " + this.dauerInMinuten + " ist Sparring: " + this.istSparring;
     }

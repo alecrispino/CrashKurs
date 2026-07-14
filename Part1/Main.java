@@ -8,7 +8,7 @@ public class Main{
         Training t2 = new Training("Padwork", 60, false);
         Training t3 = new Training("Sparring", 30, true);
         try{
-            Training t4 = new Training("Condition", -10, false);
+            Training t4 = new Training("Condition", 0, false);
             System.out.println(t4.getName());
         } catch (IllegalArgumentException iae){
             System.out.println("Ein Training darf nur eine positive Anzahl an Minuten haben!");
@@ -33,10 +33,11 @@ public class Main{
 
         System.out.println("Gesamte Trainingsdauer: " + trainingsLogger.gesamtMinuten());
 
-        Optional<Training> optionalTraining1 = trainingsLogger.findeNachName("Hans");
+        Optional<Training> optionalTraining1 = trainingsLogger.findeNachName("Sparring");
         Optional<Training> optionalTraining2 = trainingsLogger.findeNachName("Alessandro");
-        optionalTraining1.ifPresent(t -> System.out.println(t));
-        System.out.println(optionalTraining2.map(Training::toString).orElse("Name nicht gefunden"));
+
+        System.out.println(optionalTraining1.map(t -> t.toString()).orElse("Kein Training gefunden"));
+        System.out.println(optionalTraining2.map(t -> t.toString()).orElse("Kein Training gefunden"));
     }
 
 }
