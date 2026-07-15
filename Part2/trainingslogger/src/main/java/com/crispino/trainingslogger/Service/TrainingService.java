@@ -1,11 +1,11 @@
-package com.crispino.trainingslogger.Service;
+package com.crispino.trainingslogger.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.crispino.trainingslogger.Model.TrainingModel;
+import com.crispino.trainingslogger.model.TrainingModel;
 
 import java.util.ArrayList;
 

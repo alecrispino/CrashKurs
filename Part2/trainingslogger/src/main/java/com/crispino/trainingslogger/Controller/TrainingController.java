@@ -1,12 +1,16 @@
-package com.crispino.trainingslogger.Controller;
+package com.crispino.trainingslogger.controller;
 
-import com.crispino.trainingslogger.Model.TrainingModel;
-import com.crispino.trainingslogger.Service.TrainingService;
+import com.crispino.trainingslogger.model.TrainingModel;
+import com.crispino.trainingslogger.service.TrainingService;
+
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -32,6 +36,13 @@ public class TrainingController{
     public List<TrainingModel> getMethodName() {
         return trainingService.nurSparring();
     }
+
+    @PostMapping("/trainings")
+    public TrainingModel addTraining(@RequestBody TrainingModel training) {
+        trainingService.hinzufuegen(training);
+        return training;
+    }
+    
     
     
     
