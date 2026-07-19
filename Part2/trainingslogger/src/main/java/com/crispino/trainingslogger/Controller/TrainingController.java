@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 
 @RestController
@@ -38,12 +39,10 @@ public class TrainingController{
     }
 
     @PostMapping("/trainings")
-    public TrainingModel addTraining(@RequestBody TrainingModel training) {
+    public ResponseEntity<TrainingModel> addTraining(@RequestBody TrainingModel training) {
         trainingService.hinzufuegen(training);
-        return training;
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(training);
     }
-    
-    
-    
-    
 }
