@@ -61,4 +61,10 @@ public class TrainingController{
         trainingService.deleteTraining(id);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("trainings")
+    public ResponseEntity<Void> deleteAllTrainings(){
+        trainingService.deleteAllTrainings();
+        return ResponseEntity.noContent().build();
+    }
 }
