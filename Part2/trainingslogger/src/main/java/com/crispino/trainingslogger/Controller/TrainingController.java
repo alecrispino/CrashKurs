@@ -4,6 +4,8 @@ import com.crispino.trainingslogger.exception.TrainingNichtGefundenException;
 import com.crispino.trainingslogger.model.TrainingModel;
 import com.crispino.trainingslogger.service.TrainingService;
 
+import jakarta.annotation.Generated;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -41,6 +45,18 @@ public class TrainingController{
     public List<TrainingModel> getMethodName() {
         return trainingService.nurSparring();
     }
+
+    @GetMapping("/trainings/gesamtMinuten")
+    public Integer getGesamtMinuten() {
+        return trainingService.gesamtMinuten();
+    }
+
+    @GetMapping("/trainings/laenger/{minuten}")
+    public List<TrainingModel> getMethodName(@PathVariable int minuten) {
+        return trainingService.alleMitDauerLaengerAls(minuten);
+    }
+    
+    
 
     @PostMapping("/trainings")
     public ResponseEntity<TrainingModel> addTraining(@RequestBody TrainingModel training) {

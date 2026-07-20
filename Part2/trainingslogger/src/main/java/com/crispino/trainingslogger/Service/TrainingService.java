@@ -38,13 +38,17 @@ public class TrainingService {
     }
 
     public List<TrainingModel> nurSparring(){
+        //Lektion 2
         /*return trainings.stream()
                     .filter(t -> t.isSparring())
                     .toList();
         */
-        return trainingRepository.findAll().stream()
+        //Lektion 3
+        /*return trainingRepository.findAll().stream()
                     .filter(t -> t.isSparring())
                     .toList();
+        */
+        return trainingRepository.findBySparringTrue();
     }
 
     public Integer gesamtMinuten(){
@@ -52,9 +56,15 @@ public class TrainingService {
                     .mapToInt(t -> t.getDauerInMinuten())
                     .sum();
         */
-        return trainingRepository.findAll().stream()
+        /*return trainingRepository.findAll().stream()
                     .mapToInt(t -> t.getDauerInMinuten())
                     .sum();
+        */
+        Integer summe = trainingRepository.summeDauer();
+        if(summe == null){
+            return 0;
+        }
+        return summe;
     }
 
     public Optional<TrainingModel> findeNachName(String name){
@@ -63,9 +73,11 @@ public class TrainingService {
                     .findFirst();
         */
         
-        return trainingRepository.findAll().stream()
+        /*return trainingRepository.findAll().stream()
                     .filter(t -> t.getName().equals(name))
                     .findFirst();
+        */
+        return trainingRepository.findByName(name);
     }
 
     public void deleteTraining(int id){
@@ -99,5 +111,9 @@ public class TrainingService {
 
     public List<TrainingModel> alle(){
         return trainingRepository.findAll();
+    }
+
+    public List<TrainingModel> alleMitDauerLaengerAls(int minuten){
+        return trainingRepository.findByDauerInMinutenGreaterThan(minuten);
     }
 }    
