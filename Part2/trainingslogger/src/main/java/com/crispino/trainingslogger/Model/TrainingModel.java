@@ -1,9 +1,18 @@
 package com.crispino.trainingslogger.model;
 
 public class TrainingModel {
+    private int id;
     private String name;
     private int dauerInMinuten;
     private boolean sparring;
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getId(){
+        return this.id;
+    }
 
     public String getName(){
         return this.name;

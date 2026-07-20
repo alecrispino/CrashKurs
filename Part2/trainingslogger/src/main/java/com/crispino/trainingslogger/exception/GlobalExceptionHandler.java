@@ -16,6 +16,13 @@ public class GlobalExceptionHandler{
                     .body(new ErrorResponse(400, e.getMessage()));
     }
 
+    @ExceptionHandler(TrainingNichtGefundenException.class)
+    public ResponseEntity<ErrorResponse> handleTrainingNichtGefunden(TrainingNichtGefundenException e){
+        return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new ErrorResponse(404, e.getMessage()));
+    }
+
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> handleUnreadable(HttpMessageNotReadableException e){
         String message = (e.getCause() != null && e.getCause().getCause() != null)
@@ -25,4 +32,5 @@ public class GlobalExceptionHandler{
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponse(400, message));
     }
+
 }
