@@ -1,9 +1,13 @@
 package com.crispino.trainingslogger.model;
 
+import java.util.List;
+import java.util.ArrayList;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class TrainingModel {
@@ -13,6 +17,9 @@ public class TrainingModel {
     private String name;
     private int dauerInMinuten;
     private boolean sparring;
+
+    @OneToMany(mappedBy = "training", cascade = CascadeType.ALL)
+    private List<Uebung> uebungen = new ArrayList<>();
 
     protected TrainingModel(){}
 
@@ -49,5 +56,10 @@ public class TrainingModel {
     @Override
     public String toString(){
         return "Name: " + this.name + " Dauer: " + this.dauerInMinuten + " ist Sparring: " + this.sparring;
+    }
+
+    public void addUebung(Uebung uebung){
+        uebungen.add(uebung);
+        uebung.setTraining(this);
     }
 }
